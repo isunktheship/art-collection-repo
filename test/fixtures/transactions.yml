@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction_type_id: 
+  print_id: 
+  price: 
+  shipping_cost: 
+  transaction_date: 
+  description: MyString
+
+two:
+  transaction_type_id: 
+  print_id: 
+  price: 
+  shipping_cost: 
+  transaction_date: 
+  description: MyString

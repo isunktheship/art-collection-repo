@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  print_id: 
+  price: 
+  shipping_cost: 
+  transaction_date: 
+  description: MyString
+
+two:
+  print_id: 
+  price: 
+  shipping_cost: 
+  transaction_date: 
+  description: MyString

@@ -1,0 +1,23 @@
+%h1 Listing print_statuses
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @print_statuses.each do |print_status|
+      %tr
+        %td= print_status.title
+        %td= print_status.description
+        %td= link_to 'Show', print_status
+        %td= link_to 'Edit', edit_print_status_path(print_status)
+        %td= link_to 'Destroy', print_status, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Print status', new_print_status_path

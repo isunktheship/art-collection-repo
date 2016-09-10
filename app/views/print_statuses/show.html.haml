@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @print_status.title
+%p
+  %b Description:
+  = @print_status.description
+
+= link_to 'Edit', edit_print_status_path(@print_status)
+\|
+= link_to 'Back', print_statuses_path

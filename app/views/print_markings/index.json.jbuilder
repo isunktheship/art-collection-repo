@@ -1,0 +1,1 @@
+json.array! @print_markings, partial: 'print_markings/print_marking', as: :print_marking

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Height:
+  = @print_size.height
+%p
+  %b Width:
+  = @print_size.width
+
+= link_to 'Edit', edit_print_size_path(@print_size)
+\|
+= link_to 'Back', print_sizes_path

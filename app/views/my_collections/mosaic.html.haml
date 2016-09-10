@@ -1,0 +1,5 @@
+#mosaic_container.clearfix.mosaicflow
+  - @pieces.each do |piece|
+    %div.mosaicflow__item
+      = link_to purchase_path(piece) do
+        %img{src: "../assets/prints/images/temp/#{piece.print.eb_uid}.jpg"}

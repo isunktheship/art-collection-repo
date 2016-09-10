@@ -1,0 +1,1 @@
+json.partial! "print_statuses/print_status", print_status: @print_status

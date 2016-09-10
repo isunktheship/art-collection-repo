@@ -1,0 +1,23 @@
+%h1 Listing print_markings
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @print_markings.each do |print_marking|
+      %tr
+        %td= print_marking.title
+        %td= print_marking.description
+        %td= link_to 'Show', print_marking
+        %td= link_to 'Edit', edit_print_marking_path(print_marking)
+        %td= link_to 'Destroy', print_marking, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Print marking', new_print_marking_path

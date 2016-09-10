@@ -1,0 +1,2 @@
+json.extract! print, :id, :title, :release_date, :artist_id, :eb_uid, :original_price, :size_id, :class_id, :status_id, :run_size, :technique_id, :marking_id, :artist_id, :created_at, :updated_at
+json.url print_url(print, format: :json)

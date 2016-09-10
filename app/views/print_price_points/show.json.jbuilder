@@ -1,0 +1,1 @@
+json.partial! "print_price_points/print_price_point", print_price_point: @print_price_point

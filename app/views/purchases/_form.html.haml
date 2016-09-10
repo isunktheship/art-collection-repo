@@ -1,0 +1,41 @@
+= form_for @purchase, html: {class: 'form-horizontal'} do |f|
+  - if @purchase.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@purchase.errors.count, "error")} prohibited this purchase from being saved:"
+      %ul
+        - @purchase.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    - if params[:print_id]
+      .field
+        = f.label :print_id
+        = Print.find(params[:print_id]).title
+        = f.text_field :print_id, style: "display:none;"
+    - else
+      .field
+        = f.label :print_id, class: 'col-xs-2 control-label'
+        .col-xs-10
+          = f.collection_select(:print_id, Print.all.order(:title), :id, :title, {}, {class: 'form-control'})
+  .form-group
+    .field
+      = f.label :price, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :price, class: 'form-control'
+  .form-group
+    .field
+      = f.label :shipping_cost, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :shipping_cost, class: 'form-control'
+  .form-group
+    .field
+      = f.label :transaction_date, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :transaction_date, class: 'form-control'
+  .form-group
+    .field
+      = f.label :description, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :description, class: 'form-control'
+  .actions.text-center
+    = f.submit 'Save', class: 'btn btn-sm btn-success'

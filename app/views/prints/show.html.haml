@@ -1,0 +1,41 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @print.title
+%p
+  %b Release date:
+  = @print.release_date
+%p
+  %b Artist:
+  = @print.artist.name
+%p
+  %b Eb uid:
+  = @print.eb_uid
+%p
+  %b Original price:
+  = @print.original_price
+/ %p
+/   %b PrintSize:
+/   = @print.size_id
+/ %p
+/   %b Class:
+/   = @print.class_id
+/ %p
+/   %b Status:
+/   = @print.status_id
+/ %p
+/   %b Run print_size:
+/   = @print.run_size
+/ %p
+/   %b Technique:
+/   = @print.technique_id
+/ %p
+/   %b Marking:
+/   = @print.marking_id
+
+= link_to 'Edit', edit_print_path(@print)
+\|
+= link_to 'Back to Prints', prints_path
+\|
+= link_to 'Back to Collection', my_collection_path

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @print_marking.title
+%p
+  %b Description:
+  = @print_marking.description
+
+= link_to 'Edit', edit_print_marking_path(@print_marking)
+\|
+= link_to 'Back', print_markings_path

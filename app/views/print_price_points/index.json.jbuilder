@@ -1,0 +1,1 @@
+json.array! @print_price_points, partial: 'print_price_points/print_price_point', as: :print_price_point

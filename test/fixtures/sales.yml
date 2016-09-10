@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purchase_id: 1
+  print_id: 1
+  price: 9.99
+  shipping_cost: 9.99
+  transaction_date: 2016-07-30
+  description: MyString
+
+two:
+  purchase_id: 1
+  print_id: 1
+  price: 9.99
+  shipping_cost: 9.99
+  transaction_date: 2016-07-30
+  description: MyString

@@ -1,0 +1,41 @@
+%p#notice= notice
+
+.row.row-eq-height
+  %div.col-md-6.text-center
+    %img{style: "max-height:600px;width:auto;max-width:100%;height:auto;", src: "../assets/prints/images/temp/#{@purchase.print.eb_uid}.jpg"}
+
+  %div.col-md-6{style: "vertical-align:middle;margin-top:auto;margin-bottom:auto"}
+    %h4
+      = @purchase.print.title
+    %table.table.table-borderless
+      %tr
+        %td.col-sm-4
+          %b Purchase Price:
+        %td
+          = "$#{@purchase.price.to_s}"
+      %tr
+        %td.col-sm-4
+          %b Shipping Cost:
+        %td
+          = "$#{@purchase.shipping_cost.to_s.to_f}"
+      %tr
+        %td.col-sm-4
+          %b Purchase Date:
+        %td
+          = @purchase.transaction_date
+      %tr
+        %td.col-sm-4
+          %b Description:
+        %td
+          = @purchase.description
+
+%hr
+
+.text-center
+  = link_to 'Edit', edit_purchase_path(@purchase), class: "btn btn-sm btn-primary"
+  \|
+  = link_to 'Back to Purchases', purchases_path, class: 'btn btn-sm btn-default'
+  \|
+  = link_to 'Back to Collection', my_collection_path, class: 'btn btn-sm btn-default'
+  \|
+  = link_to 'Back to Mosaic', my_mosaic_path, class: 'btn btn-sm btn-default'

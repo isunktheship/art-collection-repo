@@ -1,0 +1,10 @@
+= render 'layouts/common'
+
+= render 'layouts/navbar'
+
+%div.container{style: "width:100%;margin-top:60px;"}
+  - if notice
+    %div{ class: "alert alert-success" }= notice
+  - if alert
+    %div{ class: "alert alert-info" }= alert
+  = yield

@@ -1,0 +1,1 @@
+json.partial! "print_markings/print_marking", print_marking: @print_marking

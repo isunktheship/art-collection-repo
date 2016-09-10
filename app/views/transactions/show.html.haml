@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Transaction type:
+  = @transaction.transaction_type_id
+%p
+  %b Print:
+  = @transaction.print_id
+%p
+  %b Price:
+  = @transaction.price
+%p
+  %b Shipping cost:
+  = @transaction.shipping_cost
+%p
+  %b Transaction date:
+  = @transaction.transaction_date
+%p
+  %b Description:
+  = @transaction.description
+
+= link_to 'Edit', edit_transaction_path(@transaction)
+\|
+= link_to 'Back', transactions_path

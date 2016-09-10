@@ -1,0 +1,47 @@
+%h1 Listing print_price_points
+
+%table
+  %thead
+    %tr
+      %th Print
+      %th Six month average price
+      %th Average price
+      %th
+      %th
+      %th
+
+  %tbody
+    - @print_price_points.each do |print_price_point|
+      %tr
+        %td= print_price_point.print_id
+        %td= print_price_point.six_month_average_price
+        %td= print_price_point.average_price
+        %td= link_to 'Show', print_price_point
+        %td= link_to 'Edit', edit_print_price_point_path(print_price_point)
+        %td= link_to 'Destroy', print_price_point, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Print Price Poind', new_print_price_point_path
+|
+= link_to 'Back to Prints', prints_path
+
+%br
+%br
+
+#graphdiv
+
+:javascript
+  var data = #{@print_price_points_json};
+  var graph_data = [];
+  for( var i = 0; i < data.length; i++){
+    graph_data.push([ new Date(data[i][0]), data[i][1], data[i][2] ]);
+  }
+
+  g = new Dygraph(
+    document.getElementById("graphdiv"),
+      graph_data,
+      {
+        labels: [ "x", "Avg. Value", "Six Month Value" ]
+      }
+    );

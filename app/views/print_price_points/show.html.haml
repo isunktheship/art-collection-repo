@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Print:
+  = @print_price_point.print_id
+%p
+  %b Six month average price:
+  = @print_price_point.six_month_average_price
+%p
+  %b Average price:
+  = @print_price_point.average_price
+
+= link_to 'Edit', edit_print_price_point_path(@print_price_point)
+\|
+= link_to 'Back', print_price_points_path

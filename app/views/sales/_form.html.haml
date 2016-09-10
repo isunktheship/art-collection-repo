@@ -1,0 +1,41 @@
+= form_for @sale, html: {class: 'form-horizontal'} do |f|
+  - if @sale.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sale.errors.count, "error")} prohibited this sale from being saved:"
+      %ul
+        - @sale.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    .field{style: "display:none;"}
+      = f.label :purchase_id, class: 'col-xs-4 control-label'
+      .col-xs-8
+        = f.number_field :purchase_id
+  .form-group
+    .field
+      = f.label :print_id, class: 'col-xs-4 control-label'
+      .col-xs-8
+        .form-control
+          = Purchase.find( @sale.purchase_id ).print.title
+  .form-group
+    .field
+      = f.label :price, class: 'col-xs-4 control-label'
+      .col-xs-8
+        = f.text_field :price, class: 'form-control'
+  .form-group
+    .field
+      = f.label :shipping_cost, class: 'col-xs-4 control-label'
+      .col-xs-8
+        = f.text_field :shipping_cost, class: 'form-control'
+  .form-group
+    .field
+      = f.label :transaction_date, class: 'col-xs-4 control-label'
+      .col-xs-8
+        = f.date_select :transaction_date, class: 'form-control'
+  .form-group
+    .field
+      = f.label :description, class: 'col-xs-4 control-label'
+      .col-xs-8
+        = f.text_field :description, class: 'form-control'
+  .actions.text-center
+    = f.submit 'Save', class: 'btn btn-sm btn-success'

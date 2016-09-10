@@ -1,0 +1,63 @@
+%h1 Listing Sales (#{@sales.count})
+
+%table{class: 'table table-bordered'}
+  %thead
+    %tr
+      %th Print
+      %th OG Print Price
+      %th Purchase Price
+      %th Sale Price
+      %th Shipping cost
+      %th Profit
+      %th Transaction date
+      / %th Description
+      -#%th
+      %th
+      %th
+      %th
+
+  %tbody
+    - tot_og_print_price = 0
+    - tot_purchase_price = 0
+    - tot_sales = @sales.sum(:price)
+    - tot_shipping_cost = @sales.sum(:shipping_cost)
+    - @sales.each do |sale|
+    - tot_og_print_price += sale.purchase.print.original_price.to_i
+    - tot_purchase_price += sale.purchase.price.to_i
+    - purchase_price = sale.purchase.price.to_i
+    - sale_price     = sale.price.to_i
+    - shipping_cost  = sale.shipping_cost.to_i
+    - profit = sale_price - (purchase_price + shipping_cost) 
+      %tr
+        %td= sale.purchase.print.title
+        %td.text-right= "$#{sale.purchase.print.original_price.to_i}"
+        %td.text-right= "$#{purchase_price}"
+        %td.text-right= "$#{sale_price}"
+        %td.text-right= "$#{shipping_cost}"
+        %td.text-right= "$#{profit}"
+        %td= sale.transaction_date
+        %td
+          - color = sale.description.to_s == "" ? "#CCC" : ""
+          %span.glyphicon.glyphicon-info-sign{"aria-hidden" => "true", "data-content" => "#{sale.description}", "data-toggle" => "popover", "data-trigger" => "hover", :role => "button", :tabindex => "0", :title => "Sale Description", style: "outline-width:0px;color:#{color};"}
+        -#%td= link_to 'Show', sale, class: 'btn btn-xs btn-default'
+        %td= link_to 'Edit', edit_sale_path(sale), class: 'btn btn-xs btn-default'
+        %td= link_to 'Destroy', sale, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-xs btn-danger'
+    %tr
+      %th
+      %th{style: "text-align:right;"}= "$#{tot_og_print_price}"
+      %th{style: "text-align:right;"}= "$#{tot_purchase_price}"
+      %th{style: "text-align:right;"}= "$#{tot_sales}"
+      %th{style: "text-align:right;"}= "$#{tot_shipping_cost}"
+      %th{style: "text-align:right;"}= "$#{tot_sales - (tot_purchase_price + tot_shipping_cost)}"
+      %th
+      %th
+      %th
+      %th
+      %th
+
+%br
+:javascript
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+- #= link_to 'New Sale', new_sale_path

@@ -1,0 +1,1 @@
+json.array! @print_techniques, partial: 'print_techniques/print_technique', as: :print_technique

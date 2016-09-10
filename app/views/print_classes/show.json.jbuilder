@@ -1,0 +1,1 @@
+json.partial! "print_classes/print_class", print_class: @print_class

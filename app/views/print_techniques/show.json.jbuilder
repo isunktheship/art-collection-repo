@@ -1,0 +1,1 @@
+json.partial! "print_techniques/print_technique", print_technique: @print_technique

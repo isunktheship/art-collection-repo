@@ -1,0 +1,26 @@
+.login-image
+.container.text-center{:style => "margin-top:30vh;"}
+  %div.login-container
+    %h1{style: "font-family:Againts;"} Forgot your password?
+    %br
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f|
+      = devise_error_messages!
+      .form-group.col-sm-12{style: "margin-left:auto;margin-right:auto;"}
+        .input-group
+          .input-group-addon
+            %span.glyphicon.glyphicon-user
+          = f.email_field :email, placeholder: "E-Mail", autofocus: true, class: 'form-control col-xs-9'
+      .actions
+        = f.submit "Send password reset instructions", class: "btn btn-med btn-primary"
+    %br
+    .form-group
+      .col-sm-6
+        = link_to "Back to login", new_session_path(resource_name)
+        %br/
+      .col-sm-6
+        = link_to "Sign up", new_registration_path(resource_name)
+
+:css
+  body {
+    background-color: #000;
+  }

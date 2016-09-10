@@ -1,0 +1,23 @@
+%h1 Listing print_techniques
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @print_techniques.each do |print_technique|
+      %tr
+        %td= print_technique.title
+        %td= print_technique.description
+        %td= link_to 'Show', print_technique
+        %td= link_to 'Edit', edit_print_technique_path(print_technique)
+        %td= link_to 'Destroy', print_technique, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Print technique', new_print_technique_path

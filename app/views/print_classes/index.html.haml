@@ -1,0 +1,23 @@
+%h1 Listing print_classes
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @print_classes.each do |print_class|
+      %tr
+        %td= print_class.title
+        %td= print_class.description
+        %td= link_to 'Show', print_class
+        %td= link_to 'Edit', edit_print_class_path(print_class)
+        %td= link_to 'Destroy', print_class, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Print class', new_print_class_path

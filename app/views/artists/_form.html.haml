@@ -1,0 +1,25 @@
+= form_for @artist do |f|
+  - if @artist.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@artist.errors.count, "error")} prohibited this artist from being saved:"
+      %ul
+        - @artist.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :eb_uid
+    = f.number_field :eb_uid
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :twitter
+    = f.text_field :twitter
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,23 @@
+%h1 Listing Print Sizes
+
+%table
+  %thead
+    %tr
+      %th Height
+      %th Width
+      %th
+      %th
+      %th
+
+  %tbody
+    - @print_sizes.each do |size|
+      %tr
+        %td= size.height
+        %td= size.width
+        %td= link_to 'Show', size
+        %td= link_to 'Edit', edit_print_size_path(size)
+        %td= link_to 'Destroy', size, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New PrintSize', new_print_size_path

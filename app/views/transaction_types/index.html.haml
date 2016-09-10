@@ -1,0 +1,23 @@
+%h1 Listing transaction_types
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @transaction_types.each do |transaction_type|
+      %tr
+        %td= transaction_type.title
+        %td= transaction_type.description
+        %td= link_to 'Show', transaction_type
+        %td= link_to 'Edit', edit_transaction_type_path(transaction_type)
+        %td= link_to 'Destroy', transaction_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Transaction type', new_transaction_type_path

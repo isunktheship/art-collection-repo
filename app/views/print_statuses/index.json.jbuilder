@@ -1,0 +1,1 @@
+json.array! @print_statuses, partial: 'print_statuses/print_status', as: :print_status

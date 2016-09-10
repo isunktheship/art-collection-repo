@@ -1,0 +1,31 @@
+%h1 Listing #{@transaction_type}
+
+%table
+  %thead
+    %tr
+      %th Transaction Type
+      %th Print
+      %th Price
+      %th Shipping Cost
+      %th Transaction Date
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.transaction_type.title
+        %td= transaction.print.title
+        %td= transaction.price
+        %td= transaction.shipping_cost
+        %td= transaction.transaction_date
+        %td= transaction.description
+        %td= link_to 'Show', transaction
+        %td= link_to 'Edit', edit_transaction_path(transaction)
+        %td= link_to 'Destroy', transaction, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Transaction', new_transaction_path

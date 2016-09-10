@@ -1,0 +1,56 @@
+%h1
+  Listing Prints (#{Print.all.count})
+  = link_to 'New Print', new_print_path, class: 'btn btn-sm btn-primary'
+%table{class: 'table table-bordered'}
+  %thead
+    %tr
+      %th Title
+      %th Release Date
+      %th Artist
+      %th EB UID
+      %th Original Price
+      %th Average Price
+      / %th Size
+      / %th Class
+      / %th Status
+      %th Run
+      / %th Technique
+      / %th Markings
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - total_value = 0
+    - @prints.each do |print|
+    - total_value += @top_prices[ print.id ]['average_price'] if @top_prices[ print.id ] && @top_prices[ print.id ]['average_price']
+      %tr
+        %td= print.title
+        %td{style: "text-align:right;"}= print.release_date.strftime("%m/%d/%Y") if print.release_date
+        %td= print.artist_id ? print.artist.name : "N/A"
+        %td= link_to print.eb_uid, "http://expressobeans.com/public/detail.php/#{print.eb_uid}", target: "_blank"
+        %td{style: "text-align:right;"}= print.price_in_dollars
+        %td{style: "text-align:right;"}= "$#{@top_prices[ print.id ]['average_price']}" if @top_prices[ print.id ] && @top_prices[ print.id ]['average_price']
+        / %td= print.print_size_id
+        / %td= print.print_class_id 
+        / %td= print.print_status_id
+        %td{style: "text-align:right;"}= print.run_size
+        / %td= print.print_technique_id
+        / %td= print.print_marking_id
+        %td= link_to 'Buy', new_purchase_path(print_id: print.id), class: "btn btn-xs btn-success"
+        %td= link_to 'Price History', print_price_history_path(print_id: print.id), class: "btn btn-xs btn-default"
+        %td= link_to 'Edit', edit_print_path(print), class: "btn btn-xs btn-default"
+        %td= link_to 'Destroy', print, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+    %tr
+      %th
+      %th
+      %th
+      %th
+      %th{style: "text-align:right;"}= "$#{@prints.sum(:original_price)}"
+      %th{style: "text-align:right;"}= "$#{total_value}"
+      %th
+      %th
+      %th
+      %th
+      %th

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @print_technique.title
+%p
+  %b Description:
+  = @print_technique.description
+
+= link_to 'Edit', edit_print_technique_path(@print_technique)
+\|
+= link_to 'Back', print_techniques_path

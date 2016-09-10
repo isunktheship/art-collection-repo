@@ -1,0 +1,19 @@
+= form_for @print_price_point do |f|
+  - if @print_price_point.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@print_price_point.errors.count, "error")} prohibited this print_price_point from being saved:"
+      %ul
+        - @print_price_point.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :print_id
+    = f.number_field :print_id
+  .field
+    = f.label :six_month_average_price
+    = f.text_field :six_month_average_price
+  .field
+    = f.label :average_price
+    = f.text_field :average_price
+  .actions
+    = f.submit 'Save'

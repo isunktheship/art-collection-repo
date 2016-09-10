@@ -1,0 +1,1 @@
+json.array! @print_classes, partial: 'print_classes/print_class', as: :print_class

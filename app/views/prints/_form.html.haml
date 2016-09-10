@@ -1,0 +1,59 @@
+= form_for @print, html: {class: 'form-horizontal'} do |f|
+
+  - if @print.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@print.errors.count, "error")} prohibited this print from being saved:"
+      %ul
+        - @print.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    .field
+      = f.label :title, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :title, class: 'form-control'
+  .form-group
+    .field
+      = f.label :release_date, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.date_select :release_date, class: 'form-control'
+  .form-group
+    .field
+      = f.label :artist_id, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.number_field :artist_id, class: 'form-control'
+  .form-group
+    .field
+      = f.label :eb_uid, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.number_field :eb_uid, class: 'form-control'
+  .form-group
+    .field
+      = f.label :original_price, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.text_field :original_price, class: 'form-control'
+  / .field
+  /   = f.label :size_id
+  /   = f.number_field :size_id
+  / .field
+  /   = f.label :class_id
+  /   = f.number_field :class_id
+  / .field
+  /   = f.label :status_id
+  /   = f.number_field :status_id
+  .form-group
+    .field
+      = f.label :run_size, class: 'col-xs-2 control-label'
+      .col-xs-10
+        = f.number_field :run_size, class: 'form-control'
+  / .field
+  /   = f.label :technique_id
+  /   = f.number_field :technique_id
+  / .field
+  /   = f.label :marking_id
+  /   = f.number_field :marking_id
+  / .field
+  /   = f.label :artist_id
+  /   = f.number_field :artist_id
+  .actions.text-center
+    = f.submit 'Save', class: 'btn btn-sm btn-success'

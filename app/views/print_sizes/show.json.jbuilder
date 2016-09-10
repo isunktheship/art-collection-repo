@@ -1,0 +1,1 @@
+json.partial! "print_sizes/print_size", print_size: @print_size

@@ -1,0 +1,57 @@
+%h1
+  My Collection (#{@pieces.count})
+  = link_to 'View Mosaic', my_mosaic_path, class: 'btn btn-sm btn-primary'
+
+%table{class: 'table table-bordered'}
+  %thead
+    %tr
+      %th Title
+      %th Release Date
+      / %th Artist
+      %th EB UID
+      %th Original Price
+      %th Purchase Price
+      %th Shipping Cost
+      %th Average Value
+      %th Run
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - total_value = 0
+    - @pieces.each do |purchase|
+    - total_value += @top_prices[ purchase.print.id ]['average_price'] if @top_prices[ purchase.print.id ]['average_price']
+      %tr
+        %td= purchase.print.title
+        %td{style: "text-align:right;"}= purchase.print.release_date ? purchase.print.release_date.strftime("%m/%d/%Y") : ""
+        / %td= purchase.print.artist ? "#{purchase.print.artist.last_name}, #{purchase.print.artist.first_name}" : "N/A"
+        %td= link_to purchase.print.eb_uid, "http://expressobeans.com/public/detail.php/#{purchase.print.eb_uid}", target: "_blank"
+        %td{style: "text-align:right;"}= purchase.print.price_in_dollars
+        %td{style: "text-align:right;"}= "$#{purchase.price}"
+        %td{style: "text-align:right;"}= "$#{purchase.shipping_cost}"
+        %td{style: "text-align:right;"}= "$#{@top_prices[ purchase.print.id ]['average_price']}"
+        %td= purchase.print.run_size
+        %td= link_to 'Sell', new_sale_path(purchase_id: purchase.id), class: "btn btn-xs btn-success"
+        %td= link_to 'Edit', edit_purchase_path(purchase), class: "btn btn-xs btn-default"
+        %td= link_to 'Edit Print', edit_print_path(purchase.print), class: "btn btn-xs btn-default"
+        %td= link_to 'Destroy', purchase.print, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+    %tr
+      %th
+      %th
+      %th
+      %th
+      %th{style: "text-align:right;"}= @pieces.joins(:print).sum(:original_price)
+      %th{style: "text-align:right;"}= @pieces.sum(:price)
+      %th{style: "text-align:right;"}= @pieces.sum(:shipping_cost)
+      %th{style: "text-align:right;"}= "$#{total_value}"
+      %th
+      %th
+      %th
+      %th
+      %th
+
+%br
+
+/ = link_to 'New Print', new_print_path

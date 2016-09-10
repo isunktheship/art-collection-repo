@@ -1,0 +1,35 @@
+%h1
+  Listing Purchases (#{@purchases.count})
+  = link_to 'New Purchase', new_purchase_path, class: 'btn btn-sm btn-primary'
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Print
+      %th Purchase Price
+      %th Shipping Cost
+      %th Purchase Date
+      %th Description
+      %th
+      -#%th
+      %th
+
+  %tbody
+    - @purchases.each do |purchase|
+      %tr
+        %td= purchase.print.title
+        %td.text-right= "$" + purchase.price.to_s
+        %td.text-right= purchase.shipping_cost ? "$" + purchase.shipping_cost.to_s : "N/A"
+        %td= purchase.transaction_date
+        %td
+          - color = purchase.description.to_s == "" ? "#CCC" : ""
+          %span.glyphicon.glyphicon-info-sign{"aria-hidden" => "true", "data-content" => "#{purchase.description}", "data-toggle" => "popover", "data-trigger" => "hover", :role => "button", :tabindex => "0", :title => "Sale Description", style: "outline-width:0px;color:#{color};"}
+        -#%td= link_to 'Show', purchase, class: 'btn btn-xs btn-default'
+        %td= link_to 'Edit', edit_purchase_path(purchase), class: 'btn btn-xs btn-default'
+        %td= link_to 'Destroy', purchase, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-xs btn-danger'
+
+%br
+:javascript
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })

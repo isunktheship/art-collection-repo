@@ -1,0 +1,38 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} Art Collection Repo
+    #navbar.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          =link_to "Prints", prints_path
+        %li
+          =link_to "My Collection", my_collection_path
+        %li
+          =link_to "My Mosaic", my_mosaic_path
+        %li
+          =link_to "Purchases", purchases_path
+        %li
+          =link_to "Sales", sales_path
+      
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Admin
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              =link_to "Update Print Collection", update_print_collection_path
+            %li
+              =link_to "Update Print Values", update_print_values_path
+            / %li.divider{:role => "separator"}
+        %li
+          - if current_user
+            = link_to "Sign Out", destroy_user_session_path, :method => :delete
+          - else
+            = link_to "Sign In", user_session_path, :method => :get
