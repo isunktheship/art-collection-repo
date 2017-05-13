@@ -15,6 +15,8 @@ class MyCollectionsController < ApplicationController
 
   def mosaic
     sale_ids = Sale.pluck(:purchase_id) << 0
-    @pieces = Purchase.includes(print: [:artist]).where( "purchases.id NOT in (?)", sale_ids ).order("prints.title ASC")
+    # @pieces = Purchase.includes(print: [:artist]).where( "purchases.id NOT in (?)", sale_ids ).order("prints.title ASC")
+    @pieces = Purchase.includes(print: [:artist]).where( "purchases.id NOT in (?)", sale_ids ).order("prints.eb_uid ASC")
+    pp @pieces
   end
 end

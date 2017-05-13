@@ -5,6 +5,7 @@ class UpdatePrintCollectionService
 
   def call
     begin
+      puts "calling update print collection"
       update_print_collection
       return true
     rescue StandardError => e
@@ -20,9 +21,13 @@ class UpdatePrintCollectionService
   def update_print_collection  
     collection_id = 36459
 
+    puts "made it 1"
     current_print_uids = Print.all.pluck(:eb_uid)
+    puts "made it 2"
     collection_print_uids = get_print_uids collection_id
+    puts "made it 3"
     new_print_uids = collection_print_uids - current_print_uids
+    puts "made it 4"
 
     new_print_uids.each do |print_uid|
       details = get_print_details print_uid

@@ -32,14 +32,16 @@ class GetPrintImagesService
     #pp page.images
     #pp page.images.first.attributes["src"]
     img_url = page.parser.xpath("//img[contains(@alt, 'Image')]")[0]['src'].sub("&t=mi", "&t=lg")
-    path = "http://expressobeans.com/#{img_url}"
-    pp path
+    image_path = "http://expressobeans.com/#{img_url}"
+    save_path = Rails.root.join('public', 'assets', 'prints', 'images', 'temp', "#{print_uid}.jpg")
+    # pp path
 
+    puts img_url
+    puts image_path
+    puts save_path
 
-    a.get(path).save "./public/assets/prints/images/temp/#{print_uid}.jpg"
+    a.get(image_path).save( save_path )
 
     #pp page.search("/visual/IS.php")
   end 
-
-  download_image Print.first.eb_uid
 end
